@@ -158,7 +158,7 @@ h1 {
   border: 2.9px solid black !important;
   border-radius: 16px !important;
   position: absolute !important;
-  top: 75.59055118110236px !important;
+  top: 3.78px !important;
   left: 50%  !important;
   transform: translateX(-50%) !important;
   z-index: 1000000000000000000000 !important;
@@ -1812,4 +1812,5 @@ main {
     margin-bottom: 15px;
   }
 }
+
 
