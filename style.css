@@ -20,7 +20,7 @@ body::before {
 }
 
 h1 {
-  font-size: clamp(0.5rem, 4vw, 0.5rem) !important;
+  font-size: clamp(7rem, 4vw, 7rem) !important;
 }
 
 #qrcode-container {
@@ -1916,6 +1916,7 @@ svg {
   top: 0;
   left: 0;
 }
+
 
 
 
