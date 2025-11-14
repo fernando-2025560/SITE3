@@ -179,7 +179,7 @@ h1 {
 
 .search-bar {
   width: 476.22047244094483px !important;
-  height: 1cm !important;
+  height: 8mm !important;
   padding-left: 5.9px !important;
   font-size: 16px !important;
   border: 2.9px solid black !important;
@@ -195,7 +195,7 @@ h1 {
 /* Estilo do botão */
 .search-button {
   position: absolute !important;
-  height:  1cm !important;
+  height:  8mm !important;
   border-radius: 16px !important;
   border: 2.9px solid black !important;
   font-size: 16px  !important;
@@ -1916,6 +1916,7 @@ svg {
   top: 0;
   left: 0;
 }
+
 
 
 
