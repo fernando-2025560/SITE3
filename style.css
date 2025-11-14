@@ -15,8 +15,14 @@ body::before {
   background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
-  
+  min-height: calc(190% + 16.535rem);
+
 }
+
+
+
+
+
 
 .search-container {
     position: absolute !important;
@@ -601,7 +607,7 @@ body {
 :root {
   --video-width: 226.77165354330708px;
   --video-height: 171.21259842519686px; /* 16:9 proporção exata para 60px largura */
-  --video-top: 0px;
+  --video-top: 0;
   --video-left: 134px;
   --caption-gap: 56.69291338582677px;
 }
@@ -1718,6 +1724,11 @@ main {
   box-sizing: border-box;
 }
 
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
 /* Responsividade para ajustar o layout em telas menores */
 @media (max-width: 100%) {
   .video-grid {
@@ -1884,19 +1895,5 @@ svg {
   border: none;
   top: 0;
   left: 0;
-}
-
-/* cria um  plano de fundo independente do fluxo do documento */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -9999999;
-  pointer-events: none;
-  background-image: url(1.jpg) !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important; 
-  min-height: calc(190% + 16.535rem);
 }
 
