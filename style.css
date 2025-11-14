@@ -23,6 +23,25 @@ h1 {
   font-size: 16px;
 }
 
+#qrcode-container {
+  position: fixed !important;
+  left: 92.5% !important;
+  bottom: 2.766857656661786vw !important;
+  width:  2.766857656661786vw !important;
+  height: 14.729071537290716vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#qrcode {
+  width: 8.272327964860908vw !important;
+  height: 17.199391171993913vh !important;
+  position: fixed;
+  bottom: 26.924963396778917vw;
+}
+
 
 
 .search-container {
@@ -1897,6 +1916,7 @@ svg {
   top: 0;
   left: 0;
 }
+
 
 
 
