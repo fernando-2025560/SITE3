@@ -469,3 +469,7 @@ const data = [
   { country: "UE", value: 261400 }
 ];
 createBarChart(data);
+
+window.addEventListener("orientationchange", () => {
+  document.documentElement.style.transition  = 0.2s ease";
+});
