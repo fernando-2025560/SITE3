@@ -470,3 +470,23 @@ const data = [
 ];
 createBarChart(data);
 
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const  removeCast = () => {
+      const casBtn = document.querySelector('.ytp-cast-button');
+      if (castBtn) {
+        castBtn.style.display = "none";
+        castBtn.style.opacity = "0";
+        castBtn.style.pointerEvents = "none";
+    }
+  });
+
+// Tenta remover  a cada 400ms porque  o Youtube cria o botão dinamicamente
+setInterval(removeCast, 400);
+});
