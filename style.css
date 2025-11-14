@@ -1822,13 +1822,72 @@ main {
 
 @media (orientation:  landscape)  {
   html {
-    font-size: 1vh;    /*Ajusta proporó
-    html, body {
- margin: 0 !important;
-  padding: 0 !important;
-  height: 190%;
+    font-size: 1vh;
+  }
 }
-  
+
+@media (orientation: portrait) {
+  html {
+    font-size: 1vw;
+  }
+}
+
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, li, span,  button {
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+
+svg {
+  width: 4vw;
+  height: 4vh;
+}
+
+@media (orientation: landscape) {
+  svg {
+    width: 4vh;
+    height: 4vh;
+  }
+}
+
+.logo {
+  width: 10vw;
+}
+
+@media  (orientation: landscape) {
+  .logo {
+    width: 10vh;
+  }
+}
+
+
+
+
+
+
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.video-container iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: none;
+  top: 0;
+  left: 0;
+}
+
 /* cria um  plano de fundo independente do fluxo do documento */
 body::before {
   content: "";
@@ -1842,4 +1901,3 @@ body::before {
   background-repeat: no-repeat !important; 
   min-height: calc(190% + 16.535rem);
 }
-l[
