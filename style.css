@@ -20,7 +20,7 @@ body::before {
 }
 
 h1 {
-  font-size: 16vh;
+  font-size: 16px;
 }
 
 
@@ -1897,6 +1897,7 @@ svg {
   top: 0;
   left: 0;
 }
+
 
 
 
