@@ -1927,19 +1927,21 @@ svg {
 
 
 
+/*Remove o botão transmitir (Chromecast) do player */
+iframe[src*="youtube.com"] {
+  filter: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg'></svg") !important;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
+/* Esconde manualmente o ícone de transmitir */
+.ytp-cast-button,
+.ytp-chrome-controls .ytp-button[aria-label*="Transmitir"],
+.ytp-button["Transmitir"],
+.ytp-button[aria-label*="Cast"] {
+      display: none !important;
+      opacity:  0 !important;
+      pointer-events: none !important;
+}
 
 
 
