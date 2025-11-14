@@ -1697,8 +1697,6 @@ body, html {
   height: 100%;
   width: 100%;
   overflow-x: hidden; /* Impede que o conteúdo saia da tela na horizontal */
-  display: flex;
-  flex-direction: column;
 }
 
 /* Ajustes no layout principal para ocupar toda a tela */
@@ -1901,3 +1899,4 @@ body::before {
   background-repeat: no-repeat !important; 
   min-height: calc(190% + 16.535rem);
 }
+
