@@ -20,9 +20,20 @@ body::before {
 }
 
 h1 {
-  font-size: clamp(12vh, 4vw, 12vh);
+  font-size: 1.7vw;
+  position: absolute;
+  top: 0.55vh;
+  left: 7.36vw;
+  margin: 0.69vh;
 }
 
+.barra-de-pesquisa {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  background-color: white;
+  padding: 0.69vh;
+  
 #qrcode-container {
   position: fixed !important;
   left: 92.5% !important;
@@ -170,7 +181,7 @@ body {
 
 h1 {
   font-style: italic;
-  font-size: 24.6px;
+  font-size: 1.7vw;
   position: absolute;
   top: 8px;
   left: 106px;
@@ -181,7 +192,7 @@ h1 {
   width: 476.22047244094483px !important;
   height: 8mm !important;
   padding-left: 5.9px !important;
-  font-size: 16px !important;
+  font-size: 1rem !important;
   border: 2.9px solid black !important;
   border-radius: 16px !important;
   position: absolute !important;
@@ -198,7 +209,7 @@ h1 {
   height:  8mm !important;
   border-radius: 16px !important;
   border: 2.9px solid black !important;
-  font-size: 16px  !important;
+  font-size: 1rem  !important;
   cursor: pointer !important;
   width: 8.4vw !important;
   z-index: 10000000000000000000000 !important;
@@ -1523,7 +1534,7 @@ body {
   left: 718.1102362204724px;                    /* mesma distância lateral do vídeo */
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family:  Arial, sans-serif;
   font-size: 13px;
   line-height: 1.1;
   color: #ffffff;
@@ -1548,7 +1559,7 @@ body {
   left: 377.95px;                    /* mesma distância lateral do vídeo */
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family:  Arial, sans-serif;
   font-size: 13px;
   line-height: 1.1;
   color: #ffffff;
@@ -1573,7 +1584,7 @@ body {
   left: 37.8px;                    /* mesma distância lateral do vídeo */
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family:  Arial, sans-serif;
   font-size: 13px;
   line-height: 1.1;
   color: #ffffff;
@@ -1598,7 +1609,7 @@ body {
   left: 37.8px;                    /* mesma distância lateral do vídeo */
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family:  Arial, sans-serif;
   font-size: 13px;
   line-height: 1.1;
   color: #000;
@@ -1623,7 +1634,7 @@ body {
   left: 377.953px;                    /* mesma distância lateral do vídeo */
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family:  Arial, sans-serif;
   font-size: 13px;
   line-height: 1.1;
   color: #000;
@@ -1648,7 +1659,7 @@ body {
   left: 718.11px;                    /* mesma distância lateral do vídeo */
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family:  Arial, sans-serif;
   font-size: 13px;
   line-height: 1.1;
   color: #000;
@@ -1673,7 +1684,7 @@ body {
   left: 718.1102362204724px;                    /* mesma distância lateral do vídeo */
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 13px;
   line-height: 1.1;
   color: #ffffff;
@@ -1700,7 +1711,7 @@ body {
   left: 377.953px;                    /* mesma distância lateral do vídeo */
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family:  Arial, sans-serif;
   font-size: 13px;
   line-height: 1.1;
   color: #000;
@@ -1941,6 +1952,7 @@ iframe[src*="youtube.com"] {
       opacity:  0 !important;
       pointer-events: none !important;
 }
+
 
 
 
