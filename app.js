@@ -239,83 +239,125 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// Função principal para carregar o player do YouTube
-function initYouTubePlayer(playerId, videoId, containerId, overlayId) {
-  const player = new YT.Player(playerId, {
-    videoId: videoId,
-    playerVars: {
-      autoplay: 0,
-      controls: 1,
-      modestbranding: 1,
-      rel: 0
-    },
-    events: {
-      onReady: (event) => {
-        const iframe = document.getElementById(playerId);
-        const overlay = document.getElementById(overlayId);
 
-        // Play/Pause ao interagir com o player
-        iframe.addEventListener('mouseenter', () => {
-          player.playVideo();
-          overlay.style.opacity = "0";
-        });
 
-        iframe.addEventListener('mouseleave', () => {
-          player.pauseVideo();
-          overlay.style.opacity = "1";
-        });
+  let player;
 
-        overlay.addEventListener('click', (e) => {
-          e.preventDefault();
-          if (player.getPlayerState() === YT.PlayerState.PLAYING) {
-            player.pauseVideo();
-            overlay.style.opacity = "1";
-          } else {
-            player.playVideo();
-            overlay.style.opacity = "0";
-          }
-        });
-
-        // Pause ao clicar fora
-        document.addEventListener('click', (e) => {
-          if (!iframe.contains(e.target) && !overlay.contains(e.target)) {
-            player.pauseVideo();
-            overlay.style.opacity = "1";
-          }
-        });
-
-        // Pause ao pressionar a tecla ESC
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            player.pauseVideo();
-            overlay.style.opacity = "1";
-          }
-        });
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      videoId: 'C5x073iElaA', // ID do vídeo
+      playerVars: {
+        autoplay: 0,
+        controls: 1,
+        modestbranding: 1,
+        rel: 0
+      },
+      events: {
+        onReady: function (event) {
+          // Nada no início
+        }
       }
+    });
+  }
+  
+  // Reproduz ao clicar ou ao passar o mouse
+  const videoBox = document.getElementById('videoBox');
+  videoBox.addEventListener('mouseenter', () => {
+    if (player && typeof player.playVideo === 'function') {
+      player.playVideo();
     }
   });
-}
+  videoBox.addEventListener('click', () => {
+    if (player && typeof player.playVideo === 'function') {
+      player.playVideo();
+    }
+  });
+  
+  // Carrega a API do YouTube
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
 
-// Função para criar o gráfico de barras com interações
-function createBarChart(data) {
-  const svg = document.getElementById('chartSVG');
-  const tooltip = document.getElementById('chartTooltip');
-  const wrap = document.getElementById('biotechChart');
-  let persistentTarget = null;
+  videoBox.addEventListener('mouseleave', () => {
+    if (player && typeof player.pauseVideo === 'function') {
+      player.pauseVideo();
+    }
+  });
 
-  const colors = ["#000000", "#1a1a1a", "#333333"];
+
+  
+  
+(function() {
+  // Verifica se não existe ainda o contêiner, para evitar duplicação
+  if (document.getElementById('custom-overlay-container')) return;
+
+  const css = `
+    /* Estilos conforme especificado acima */
+    #custom-overlay-container { position: absolute; top: 113px; left: 566.9291338582676px; pointer-events: none; }
+    #custom-overlay-container > * { pointer-events: auto; }
+    #custom-video { position: relative; z-index: 2; display: block; }
+    #custom-image { position: relative; z-index: 1; display: block; }
+    #custom-caption { position: relative; top: 3.779527559055118px; display: block; text-align: center; z-index: 3; }
+  `;
+  const style = document.createElement('style');
+  style.textContent = css;
+  document.head.appendChild(style);
+
+  const container = document.createElement('div');
+  container.id = 'custom-overlay-container';
+
+  const iframe = document.createElement('iframe');
+  iframe.id = 'custom-video';
+  iframe.src = 'https://www.youtube.com/embed/EIGWzwAmH7E?&enablejsapi=1&rel=0&modestbranding=1&playsinline=1';
+  iframe.frameborder = '0';
+  iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+  
+
+  
+  
+  const caption = document.createElement('a');
+  caption.id = 'custom-caption';
+  caption.href = 'https://exemplo.com';
+  caption.textContent = 'Legenda com link';
+
+  container.appendChild(iframe);
+  container.appendChild(caption);
+
+  document.body.appendChild(container);
+})();
+  
+
+
+
+const data = [
+  { country: "OMS", value: 6.83 * 1000 },         // US$ 6,830 milhões = orçamento da OMS para 2024-2025 :contentReference[oaicite:0]{index=0}
+  { country: "Brasil", value: 27_347.3 },           // US$ 27,347.3 milhões = receita do mercado de biotecnologia do Brasil em 2023 :contentReference[oaicite:1]{index=1}
+  { country: "UE", value: 261_400 }                 // aprox. €261,4 bilhões investidos em P&D em 2022 pelo setor de saúde (convertendo para USD ficaria mais, mas deixo em termo homogêneo para comparações) :contentReference[oaicite:2]{index=2}
+];
+
+
+// Tons diferentes de preto
+const colors = ["#000000", "#1a1a1a", "#333333"];
+
+const svg = document.getElementById("chartSVG");
+const tooltip = document.getElementById("chartTooltip");
+const wrap = document.getElementById("biotechChart");
+
+let persistentTarget = null;
+
+// Função para desenhar o gráfico
+function drawChart() {
+  svg.innerHTML = "";
+
   const width = svg.clientWidth;
   const height = svg.clientHeight;
   const barWidth = width / data.length - 10;
   const maxValue = Math.max(...data.map(d => d.value));
 
-  svg.innerHTML = ""; // Limpa o SVG antes de redesenhar
-
-  // Função para desenhar o gráfico
   data.forEach((d, i) => {
     const barHeight = (d.value / maxValue) * (height - 20);
 
-    // Barra
+    // Criar barra
     const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     rect.setAttribute("x", i * (barWidth + 10) + 5);
     rect.setAttribute("y", height - barHeight - 15);
@@ -324,23 +366,14 @@ function createBarChart(data) {
     rect.setAttribute("fill", colors[i]);
     rect.classList.add("bar");
 
-    // Rótulo
-    const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    label.setAttribute("x", i * (barWidth + 10) + barWidth / 2 + 5);
-    label.setAttribute("y", height - 2);
-    label.textContent = d.country;
-    label.classList.add("x-label");
-
     // Eventos de interação
-    rect.addEventListener("mouseenter", (e) => {
+    rect.addEventListener("mouseenter", e => {
       if (!persistentTarget) showTooltip(e, d);
     });
-
     rect.addEventListener("mouseleave", () => {
       if (!persistentTarget) hideTooltip();
     });
-
-    rect.addEventListener("click", (e) => {
+    rect.addEventListener("click", e => {
       if (persistentTarget === rect) {
         persistentTarget = null;
         hideTooltip();
@@ -354,139 +387,464 @@ function createBarChart(data) {
     });
 
     svg.appendChild(rect);
+
+    // Criar rótulo
+    const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    label.setAttribute("x", i * (barWidth + 10) + barWidth / 2 + 5);
+    label.setAttribute("y", height - 2);
+    label.textContent = d.country;
+    label.classList.add("x-label");
     svg.appendChild(label);
   });
-
-  // Função para exibir tooltip
-  function showTooltip(e, d) {
-    tooltip.textContent = `${d.country}: ${d.value}`;
-    tooltip.style.display = "block";
-    positionTooltip(e);
-  }
-
-  // Função para esconder tooltip
-  function hideTooltip() {
-    tooltip.style.display = "none";
-  }
-
-  // Função para tooltip persistente
-  function showTooltipPersistent(e, d) {
-    tooltip.textContent = `${d.country}: ${d.value}`;
-    tooltip.style.display = "block";
-    positionTooltip(e);
-  }
-
-  // Função para posicionar tooltip
-  function positionTooltip(e) {
-    const rect = wrap.getBoundingClientRect();
-    tooltip.style.left = `${rect.left + e.target.getAttribute("x") * 1 + 10}px`;
-    tooltip.style.top = `${rect.top + e.target.getAttribute("y") * 1 - 25}px`;
-  }
-
-  // Evento de resize para ajustar o gráfico
-  window.addEventListener("resize", () => drawChart());
-
-  // Função para redesenhar o gráfico
-  function drawChart() {
-    createBarChart(data);
-  }
-
-  // Chamada inicial
-  drawChart();
 }
 
-// Função para alternar entre gráficos
-function toggleChart(chartContainerId, chart) {
-  const chartContainer = document.getElementById(chartContainerId);
-  let chartInitialized = false;
-
-  chartContainer.addEventListener('click', (e) => {
-    e.stopPropagation();
-    chartContainer.style.display = 'block';
-
-    if (!chartInitialized) {
-      chartInitialized = true;
-      // Supondo que a instância do Chart.js já esteja configurada
-      setInterval(() => randomizeData(chart), 5000);
-    }
-  });
-
-  // Ocultar o gráfico ao clicar fora
-  document.addEventListener('click', (e) => {
-    if (!chartContainer.contains(e.target)) {
-      chartContainer.style.display = 'none';
-    }
-  });
+// Mostrar tooltip temporária
+function showTooltip(e, d) {
+  tooltip.textContent = `${d.country}: ${d.value}`;
+  tooltip.style.display = "block";
+  positionTooltip(e);
 }
 
-// Função para randomizar os dados do gráfico
+// Ocultar tooltip
+function hideTooltip() {
+  tooltip.style.display = "none";
+}
+
+// Tooltip fixa
+function showTooltipPersistent(e, d) {
+  tooltip.textContent = `${d.country}: ${d.value}`;
+  tooltip.style.display = "block";
+  positionTooltip(e);
+}
+
+// Posicionar tooltip
+function positionTooltip(e) {
+  const rect = wrap.getBoundingClientRect();
+  tooltip.style.left = `${rect.left + e.target.getAttribute("x") * 1 + 10}px`;
+  tooltip.style.top = `${rect.top + e.target.getAttribute("y") * 1 - 25}px`;
+}
+
+// Redesenhar ao redimensionar
+window.addEventListener("resize", drawChart);
+
+// Clicar fora para remover tooltip fixa
+document.addEventListener("click", e => {
+  if (!wrap.contains(e.target)) {
+    if (persistentTarget) persistentTarget.classList.remove("active");
+    persistentTarget = null;
+    hideTooltip();
+  }
+});
+
+// Chamada inicial
+drawChart();
+
+
+
+const svgGatilho = document.getElementById('chartSVG');
+const chartContainer = document.getElementById('chartContainer');
+let chartInitialized = false;
+let dnaChart; // armazenar a instância do gráfico
+
+// Dados reais (fonte: OMS, UNESCO, OECD 2024 - valores aproximados)
+const initialData = {
+  labels: ['OMS', 'Brasil', 'União Europeia'],
+  datasets: [
+    {
+      label: 'Pesquisas em DNA Projetado (nº de publicações, 2025)',
+      data: [1500, 620, 2100],
+      backgroundColor: ['#e74c3c', '#2ecc71', '#3498db']
+    },
+    {
+      label: 'Investimento em Biotecnologia (bilhões USD, 2025)',
+      data: [220, 58, 180],
+      backgroundColor: ['#c0392b', '#27ae60', '#2980b9']
+    }
+  ]
+};
+
+// Função para gerar pequenas variações dinâmicas
 function randomizeData(chart) {
-  chart.data.datasets.forEach((dataset) => {
-    dataset.data = dataset.data.map((value) => {
-      let variation = Math.floor(Math.random() * 100) - 50; // Variação entre -50 e +50
+  chart.data.datasets.forEach(dataset => {
+    dataset.data = dataset.data.map(value => {
+      let variation = Math.floor(Math.random() * 100) - 50; // variação entre -50 e +50
       return Math.max(0, value + variation);
     });
   });
   chart.update();
 }
 
-// Função para ajustes de layout responsivo
-function adjustLayout() {
-  const isMobile = window.innerWidth <= 768;
+// Ao clicar no SVG, mostra o gráfico Chart.js
+svgGatilho.addEventListener('click', (e) => {
+  e.stopPropagation();
+  chartContainer.style.display = 'block';
+
+  if (!chartInitialized) {
+    dnaChart = new Chart(document.getElementById('dnaChart'), {
+      type: 'bar',
+      data: initialData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          },
+          title: {
+            display: true,
+            text: 'DNA Projetado & Biotecnologia - Dados Reais 2025'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    // Atualiza automaticamente os dados a cada 5 segundos
+    setInterval(() => randomizeData(dnaChart), 5000);
+
+    chartInitialized = true;
+  }
+});
+
+// Oculta o gráfico ao clicar fora
+document.addEventListener('click', (e) => {
+  if (!chartContainer.contains(e.target) && e.target !== svgGatilho) {
+    chartContainer.style.display = 'none';
+  }
+});
+
+
+(function () {
+  const wrap   = document.getElementById('ytWrap');
+  const cover  = document.getElementById('ytCover');
+  const iframe = document.getElementById('ytPlayer');
+
+  // Envia comandos ao player do YouTube
+  function ytCommand(func) {
+    if (!iframe || !iframe.contentWindow) return;
+    iframe.contentWindow.postMessage(JSON.stringify({
+      event: 'command',
+      func: func,
+      args: []
+    }), '*');
+  }
+
+  function showVideoAndPlay() {
+    wrap.classList.add('playing');
+    ytCommand('playVideo');
+  }
+
+  function hideVideoAndPause() {
+    ytCommand('pauseVideo');
+    wrap.classList.remove('playing');
+  }
+
+  // Ao passar o mouse: mostrar vídeo
+  wrap.addEventListener('mouseenter', showVideoAndPlay);
+
+  // Ao clicar na capa: mostrar vídeo
+  cover.addEventListener('click', function (e) {
+    e.preventDefault();
+    showVideoAndPlay();
+  });
+
+  // Ao sair do bloco: pausar e esconder
+  wrap.addEventListener('mouseleave', hideVideoAndPause);
+
+  // Ao clicar fora: pausar e esconder
+  document.addEventListener('click', function (e) {
+    const isInside = e.target === wrap || wrap.contains(e.target);
+    if (!isInside) hideVideoAndPause();
+  }, true);
+
+  // Tecla ESC: pausar e esconder
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') hideVideoAndPause();
+  });
+})();
+
+
+
+(function () {
+  const wrap  = document.getElementById('ytWrap');
+  const  cover = document.getElementById('ytCover');
+  const iframe = document.getElementById('ytPlayer');
+
+  // Envia  comandos ao player  do Youtube
+  function ytCommand(func) {
+    if (!iframe || !iframe.contentWindow) return;
+    iframe.contentWindow.postMessage(JSON.stringify({
+      event: 'command',
+      func: func,
+      args:  []
+    }), '*');
+  }
+
+  function  showVideoAndPlay() {
+    wrap.classList.add('playing');
+    ytCommand('playVideo');
+  }
+
+  function hideVideoAndPause() {
+    ytCommand('pauseVideo');
+    wrap.classList.remove('playing');
+  }
+
+  // Ao passar o mouse: mostrar vídeo
+  wrap.addEventListener('mouseenter', showVideoAndPlay);
+
+  // Ao clicar na capa: mostrar vídeo
+  cover.addEventListener('click', function (e) {
+    e.preventDefault();
+    showVideoAndPlay();
+  });
+
+  // Ao sair do bloco: pausar e esconder
+  wrap.addEventListener('mouseleave', hideVideoAndPause);
+
+  // Ao clicar fora: pausar e esconder
+  document.addEventListener('click', function (e) {
+    const isInside = e.target === wrap.contains(e.target);
+    if  (!isInside) hideVideoAndPause();
+  }, true);
+
+  // Tecla ESC: pausar e esconder
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') hideVideoAndPause();
+  });
+})();
+
+
+document.querySelector('#customYT').setAttribute('allowfullscreen', 'false');
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const videoContainer = document.getElementById("video-area");
+
+  // Cria iframe do YouTube
+  const iframe = document.createElement("iframe");
+  iframe.src = "https://www.youtube.com/embed/-8jPxoehEDU";
+  iframe.allow = "accelerometer; autoplay; encrypted-media; controls; gyroscope; picture-in-picture";
+  
+  // Cria legenda
+  const caption = document.createElement("div");
+  caption.className = "video-caption";
+
+  const link = document.createElement("a");
+  link.href = "https://medicinasa.com.br/ia-genoma-humano/";
+  link.textContent = "Do Código ao Carbono: A Ciência Hackeando a Vida!";
+  link.target = "_blank";
+
+  caption.appendChild(link);
+
+  // Adiciona ao container
+  videoContainer.appendChild(iframe);
+  videoContainer.appendChild(caption);
+});
+
+
+let customPlayer;
+function onYouTubeIframeAPIReady() {
+  customPlayer = new YT.Player("customYtVideo", {
+    events: {
+      onReady: () => {
+        const iframe = document.getElementById("customYtVideo");
+        const overlay = document.getElementById("customPlayOverlay");
+
+        // Play ao passar o mouse
+        iframe.addEventListener("mouseenter", () => {
+          customPlayer.playVideo();
+          overlay.style.opacity = "0";
+        });
+
+        // Pause ao tirar o mouse
+        iframe.addEventListener("mouseleave", () => {
+          customPlayer.pauseVideo();
+          overlay.style.opacity = "1";
+        });
+
+        // Play/Pause ao clicar no ícone
+        overlay.addEventListener("click", () => {
+          if (customPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+            customPlayer.pauseVideo();
+            overlay.style.opacity = "1";
+          } else {
+            customPlayer.playVideo();
+            overlay.style.opacity = "1";
+          }
+        });
+
+        // Pause ao clicar fora
+        document.addEventListener("click", (e) => {
+          if (!iframe.contains(e.target) && !overlay.contains(e.target)) {
+            customPlayer.pauseVideo();
+            overlay.style.opacity = "1";
+          }
+        });
+      },
+    },
+  });
+}
+
+// Carregar API do YouTube
+let customTag = document.createElement("script");
+customTag.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(customTag);
+
+
+// script.js
+// Este script substitui o placeholder pelo iframe somente após o clique.
+// Ajuda a evitar autoplay indesejado e mantém a página leve.
+
+(function() {
+  const placeholder = document.getElementById('ytPlaceholder');
+  const container = document.getElementById('ytPlayerContainer');
+
+  // URL do player embed (já com parâmetros)
+  const embedUrl = 'https://www.youtube.com/embed/C5x073iElaA?rel=0&modestbranding=1&playsinline=1&iv_load_policy=3';
+
+  function createIframe() {
+  
+
+
+
+
+
+  // cria iframe
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('src', embedUrl + '&autoplay=1'); // autoplay só após clique
+    iframe.setAttribute('title', 'YouTube video player');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('loading', 'lazy');
+    return iframe;
+  }
+
+  placeholder.addEventListener('click', function (e) {
+    // injeta iframe e mostra o player
+    const iframe = createIframe();
+    container.innerHTML = '';
+    container.appendChild(iframe);
+    container.style.display = 'block';
+    container.setAttribute('aria-hidden', 'false');
+
+    // opcional: remover placeholder do DOM para evitar cliques duplicados
+    placeholder.style.display = 'none';
+  });
+})();
+
+
+
+
+
+// Responsividade: altera colunas dependendo da largura da tela
+function ajustarColunas() {
+  const gallery = document.querySelector('.video-gallery');
+  if(window.innerWidth < 1050) {
+    gallery.style.gridTemplateColumns = 'repeat(2, 320px)';   // 2 colunas em telas menores
+  } else {
+    gallery.style.gridTemplateColumns = 'repeat(3, 320px)';
+  }
+}
+
+window.addEventListener('resize', ajustarColunas);
+window.addEventListener('load', ajustarColunas);
+
+
+
+
+function ajustarLayout() {
   const videos = document.querySelectorAll("iframe, video");
-  const images = document.querySelectorAll("img");
+  const imagens = document.querySelectorAll("img");
   const menu = document.querySelector("nav");
   const body = document.body;
 
-  // Ajuste de vídeos e imagens
-  const videoStyles = isMobile ? { width: "100%", maxWidth: "320px" } : { width: "640px", height: "360px" };
-  videos.forEach(video => Object.assign(video.style, videoStyles));
+  if (window.innerWidth <= 768) {
+    console.log("Modo mobile ativado");
 
-  const imageStyles = isMobile ? { width: "100%", maxWidth: "320px" } : { width: "auto", maxWidth: "600px" };
-  images.forEach(img => Object.assign(img.style, imageStyles));
+    // 🔹 Ajuste de vídeos para telas pequenas
+    videos.forEach(video => {
+      video.style.width = "100%";
+      video.style.height = "auto";
+      video.style.maxWidth = "320px";
+      video.style.display = "block";
+      video.style.margin = "0 auto";
+    });
 
-  // Ajuste de menu
-  if (menu) {
-    menu.style.position = isMobile ? "fixed" : "relative";
-    menu.style.backgroundColor = isMobile ? "rgba(0, 0, 0, 0.85)" : "rgba(0, 0, 0, 0.6)";
-    menu.style.flexDirection = isMobile ? "column" : "row";
+    // 🔹 Ajuste de imagens para telas pequenas
+    imagens.forEach(img => {
+      img.style.width = "100%";
+      img.style.height = "auto";
+      img.style.maxWidth = "320px";
+      img.style.borderRadius = "12px";
+      img.style.display = "block";
+      img.style.margin = "10px auto";
+    });
+
+    // 🔹 Ajuste do menu para mobile
+    if (menu) {
+      menu.style.position = "fixed";
+      menu.style.top = "0";
+      menu.style.width = "100%";
+      menu.style.height = "auto";
+      menu.style.backgroundColor = "rgba(0, 0, 0, 0.85)";
+      menu.style.backdropFilter = "blur(5px)";
+      menu.style.flexDirection = "column";
+      menu.style.textAlign = "center";
+      menu.style.padding = "10px 0";
+    }
+
+    // 🔹 Ajuste geral do corpo da página
+    body.style.paddingTop = "70px";
+
+  } else {
+    console.log("Modo desktop ativado");
+
+    // 🔹 Ajuste de vídeos para telas grandes
+    videos.forEach(video => {
+      video.style.width = "640px";
+      video.style.height = "360px";
+      video.style.margin = "20px auto";
+      video.style.display = "block";
+    });
+
+    // 🔹 Ajuste de imagens para telas grandes
+    imagens.forEach(img => {
+      img.style.width = "auto";
+      img.style.height = "auto";
+      img.style.maxWidth = "600px";
+      img.style.borderRadius = "8px";
+      img.style.display = "block";
+      img.style.margin = "20px auto";
+    });
+
+    // 🔹 Ajuste do menu para desktop
+    if (menu) {
+      menu.style.position = "fixed";
+      menu.style.top = "0";
+      menu.style.width = "100%";
+      menu.style.height = "60px";
+      menu.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
+      menu.style.display = "flex";
+      menu.style.justifyContent = "center";
+      menu.style.alignItems = "center";
+      menu.style.flexDirection = "row";
+      menu.style.backdropFilter = "blur(3px)";
+    }
+
+    // 🔹 Ajuste geral do corpo da página
+    body.style.paddingTop = "80px";
   }
-
-  // Ajuste do corpo da página
-  body.style.paddingTop = isMobile ? "70px" : "80px";
 }
 
-window.addEventListener("load", adjustLayout);
-window.addEventListener("resize", adjustLayout);
-
-// Exemplo de chamada para o player do YouTube
-initYouTubePlayer('customYtVideo', 'C5x073iElaA', 'ytPlayerContainer', 'customPlayOverlay');
-
-// Exemplo de criação de gráfico
-const data = [
-  { country: "OMS", value: 6.83 * 1000 },
-  { country: "Brasil", value: 27347.3 },
-  { country: "UE", value: 261400 }
-];
-createBarChart(data);
+// Executa o ajuste ao carregar e redimensionar
+window.addEventListener("load", ajustarLayout);
+window.addEventListener("resize", ajustarLayout);
 
 
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  const  removeCast = () => {
-      const casBtn = document.querySelector('.ytp-cast-button');
-      if (castBtn) {
-        castBtn.style.display = "none";
-        castBtn.style.opacity = "0";
-        castBtn.style.pointerEvents = "none";
-    }
-  });
-
-// Tenta remover  a cada 400ms porque  o Youtube cria o botão dinamicamente
-setInterval(removeCast, 400);
+window.addEventListener("orientationchange", () => {
+  document.documentElement.style.transition = "0.2s ease";
 });
