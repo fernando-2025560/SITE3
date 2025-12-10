@@ -1,63 +1,22 @@
 html, body {
-  height: 100%;
   margin: 0 !important;
   padding: 0 !important;
-}
-  
-/* cria um  plano de fundo independente do fluxo do documento */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -9999999;
-  pointer-events: none;
+  min-width: 100% !important; /* Evita problemas em telas muito pequenas */
+  height: 149% !important;
+  min-height: 149% !important;
   background-image: url(1.jpg) !important;
   background-size: cover !important;
   background-position: center center !important;
+  background-attachment: scroll !important;
   background-repeat: no-repeat !important;
-  min-height: calc(190% + 16.535rem);
-
 }
 
-h1 {
-  font-size: 1.7vw;
-  position: absolute;
-  top: 0.55vh;
-  left: 7.36vw;
-  margin: 0.69vh;
-}
-
-.barra-de-pesquisa {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  background-color: white;
-  padding: 0.69vh;
-  
-#qrcode-container {
-  position: fixed !important;
-  left: 92.5% !important;
-  bottom: 2.766857656661786vw !important;
-  width:  2.766857656661786vw !important;
-  height: 14.729071537290716vh !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-#qrcode {
-  width: 8.272327964860908vw !important;
-  height: 17.199391171993913vh !important;
-  position: fixed;
-  bottom: 26.924963396778917vw;
-}
 
 
 
 .search-container {
     position: absolute !important;
-    top: 1px !important;  /* Distância do topo */
+    top: 0.092592vh !important;  /* Distância do topo */
     left: 50% !important;
     transform: translateX(-50%) !important;
     display: flex !important;
@@ -82,7 +41,6 @@ h1 {
 /* Estilos Gerais */
 body {
     margin: 0 !important;
-    font-family: Arial, sans-serif !important;
     overflow: hidden !important; /* Evita Rolagem */
 }
 
@@ -96,6 +54,11 @@ body {
 }
 
 
+header{
+    background-color: transparent !important;
+    height: 6.481481vh !important;
+    width: 100% !important;
+}
 
 
 /* Logo */
@@ -103,16 +66,16 @@ body {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
-    width: 3px !important;
-    height: 56.7px !important;
+    width: 7.99vw !important;      /* 3px */
+    height: 9.15vh !important;     /* 56.7px */
     object-fit: cover !important;
     z-index: 999999999999 !important;
 }
 
-
-
 /* Reset básico */
 * {
+    margin: 0 !important;
+    padding: 0 !important;
     box-sizing: border-box !important;
 }
 
@@ -123,21 +86,49 @@ body {
     align-items: flex-start !important;
     height: 100vh !important;
     background-color: #f5f5f5 !important;
+    font-family: Arial, sans-serif !important;
 }
 
 header {
     background-color: transparent !important;
-    height: 150px !important;
+    height: 13.888889vh !important;
     width: 100% !important;
 }
 
 
   
- 
+h1 {
+  font-size: clamp(18px, 2.2vw, 24.6px) !important;
+  position: absolute !important;
+  top: clamp(4px, 1vh, 8px) !important;
+  left: clamp(40px, 10vw, 106px) !important;
+  margin: clamp(5px, 1vh, 10px) !important;
+}
+
+/* Mantém a barra no mesmo lugar, mas ajusta automaticamente */
+.barra-de-pesquisa {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  padding: clamp(6px, 1vh, 10px);
+  width: auto;
+  max-width: 100%;
+}
+
+/* Ajuste fino para telas muito pequenas */
+@media (max-width: 480px) {
+  h1 {
+      left: 20px !important;
+      top: 6px !important;
+  }
+}
+
   
   
   p {
-    font-size: 11.9px !important; /* Altere o valor conforme necessário */
+    font-size: 1.111111vh !important; /* Altere o valor conforme necessário */
   }
   
   body {
@@ -148,11 +139,13 @@ header {
  
  
 /* Centralizando a barra de pesquisa no topo */
-body {
+body, html {
     height: 100% !important;
     display: flex !important;
     justify-content: center !important;
-    align-items: flex-start !important;   
+    align-items: flex-start !important;
+    font-family: Arial, sans-serif !important;
+    
 }
 
 /* Estilizando a barra de pesquisa */
@@ -163,8 +156,8 @@ body {
 }
 
 body {
-    margin: 3px !important;
-    padding: 6px !important;
+    margin: 0.156250vw !important;
+    padding: 0.312500vw !important;
     height: 100vh !important;
     display: flex !important;
     justify-content: center !important;
@@ -173,70 +166,42 @@ body {
   
   .search-container {
     position: absolute !important;
-    top: 9.45px !important;
+    top: 0.833333vh !important;
     display: flex !important;
   }
   
+  .search-bar {
+    width: 34.8vw !important;
+    height: 4.7vh !important;
+    padding-left: 0.312500vw !important;
+    font-size: 2.6vh !important;
+    border: 0.156250vw solid black !important;
+    border-radius: 0.8333333vw !important;
+    position: absolute !important;
+    top: 1.1vh !important;
+    left: 50%  !important;
+    transform: translateX(-50%) !important;
+    z-index: 1000000000000000000000 !important;
+  }
   
-
-h1 {
-  font-style: italic;
-  font-size: 1.7vw;
-  position: absolute;
-  top: 8px;
-  left: 106px;
-  margin: 10px;
-}
-
-.search-bar {
-  width: 476.22047244094483px !important;
-  height: 8mm !important;
-  padding-left: 5.9px !important;
-  font-size: 1rem !important;
-  border: 2.9px solid black !important;
-  border-radius: 16px !important;
-  position: absolute !important;
-  top: 1mm !important;
-  left: 50%  !important;
-  transform: translateX(-50%) !important;
-  z-index: 1000000000000000000000 !important;
-}
-
-
-/* Estilo do botão */
-.search-button {
-  position: absolute !important;
-  height:  8mm !important;
-  border-radius: 16px !important;
-  border: 2.9px solid black !important;
-  font-size: 1rem  !important;
-  cursor: pointer !important;
-  width: 8.4vw !important;
-  z-index: 10000000000000000000000 !important;
-  background-color: transparent !important;
-  padding-left: 3px !important;
-  top: 1mm !important;
-  right: 321.7px !important;
-}
-
-
-/* Marquee */
-.marquee-container {
-  position: absolute;
-  top: 69px;
-  left: 0;
-  right: 0;
-  font-weight: bold;
-}  
-
-/* Logo e título */
-#logo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 113px;
-  height: 70.4px;
-}
+  
+  /* Estilo do botão */
+  .search-button {
+    position: absolute !important;
+    height: 4.7vh !important;
+    border-radius: 0.8333333vw !important;
+    border: 0.156250vw solid black !important;
+    font-size: 2.6vh  !important;
+    cursor: pointer !important;
+    width: 8.4vw !important;
+    z-index: 10000000000000000000000 !important;
+    background-color: transparent !important;
+    padding-left: 0.156250vw !important;
+    top: 1.1vh !important;
+    right: 22.9184vw !important;
+  }
+  
+  
 .search-bar:focus {
     border-color: black !important;
 }
@@ -244,13 +209,13 @@ h1 {
 
 .icon-glass-container {
   position: fixed !important;
-  top: 611.5px !important;
-  right: 3px !important;
+  top: 96vh !important;
+  right: 0.156250vw !important;
   display: flex !important;
   flex-wrap: nowrap !important;         /* impede quebra de linha */
   align-items: center !important;       /* alinha verticalmente os ícones */
   justify-content: center !important;   /* alinha horizontalmente se necessário */
-  gap: 7px !important;
+  gap: 0.364583vw !important;
   z-index: 9999 !important;
   overflow: visible !important;         /* garante que nada seja cortado */
   box-sizing: border-box !important;
@@ -258,8 +223,8 @@ h1 {
 }
 
 .icon-glass-container button {
-  width: 24px !important;
-  height: 24px  !important;
+  width: 1.250000vw !important;
+  height: 2.222222vh  !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -269,7 +234,7 @@ h1 {
   cursor: pointer !important;
   box-sizing: border-box !important;
   overflow: visible !important;
-  top: 611.5px !important;
+  top: 96vh !important;
   
 }
 
@@ -280,39 +245,39 @@ h1 {
   display: block !important;
   box-sizing: border-box !important;
   overflow: visible  !important;
-  top: 611.5px !important;
+  top: 96vh !important;
 }
 
 .glass-icon {
-  width: 35px !important;
-  height: 35px !important;
+  width: 1.822917vw !important;
+  height: 3.240741vh !important;
   border-radius: 50% !important;
-  backdrop-filter: blur(6px) saturate(180%) !important;
+  backdrop-filter: blur(0.312500vw) saturate(180%) !important;
   background: rgba(255, 255, 255, 0.2) !important;
   box-shadow : 
-     0 4px 10px rgba(255,255,255, 0.3),
-     inset 1px 1px 2px rgba(0,0,0,0.3),
-     inset 2px 2px 2px rgba(0,0,0,0.1) !important;
+     0 0.208333vw 0.520833vw rgba(255,255,255, 0.3),
+     inset 0.052083vw 0.052083vw 0.104167vw rgba(0,0,0,0.3),
+     inset 0.104167vw 0.104167vw 0.104167vw rgba(0,0,0,0.1) !important;
   display: flex !important;
   justify-content: center  !important;
   align-items: center !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease !important;
   text-decoration: none !important;
   object-fit: contain !important;
-  padding: 5.67px !important;
+  padding: 0.20419vw !important;
   box-sizing: border-box !important;
   overflow: visible !important;
-  top: 611.5px !important;
+  top: 96vh !important;
 }
 
 
 .glass-icon:hover {
-  transform: scale(1.4) translateX(-3.7px) !important;
+  transform: scale(1.4) translateX(-0.208339vw) !important;
   box-shadow:
-      0 3px 8px rgba(0,0,0,0.4),
-      inset 2px 2px 3px rgba(255, 255, 255, 0.6),
-      inset 3px 3px 3px rgba(0,0,0,0.2) !important;
-      top: 611.5px !important;
+      0 0.156250vw 0.416667vw rgba(0,0,0,0.4),
+      inset 0.104167vw 0.104167vw 0.156250vw rgba(255, 255, 255, 0.6),
+      inset 0.156250vw 0.156250vw 0.156250vw rgba(0,0,0,0.2) !important;
+      top: 96vh !important;
 }
 
 .glass-svg {
@@ -325,7 +290,7 @@ h1 {
   pointer-events: none !important;
   object-fit: contain !important;
   box-sizing: border-box !important;
-  top: 611.5px !important;
+  top: 96vh !important;
   overflow: visible !important;
   position: center;
 }
@@ -344,9 +309,9 @@ h1 {
 #qrcode-container {
   position: fixed !important;
   left: 92.5% !important;
-  bottom: 37.79527559px !important;
-  width: 37.79527559px !important;
-  height: 96.77px !important;
+  bottom: 3.425926vh !important;
+  width: 1.927083vw !important;
+  height: 8.888889vh !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
@@ -354,8 +319,8 @@ h1 {
 }
 
 #qrcode {
-  width: 113px !important;
-  height: 113px !important;
+  width: 4.322917vw !important;
+  height: 7.685185vh !important;
   position: fixed;
   bottom: 367.795px;
 }
@@ -364,14 +329,16 @@ body {
   margin: 0;
   padding: 0;
   background-color: #000;
+  font-family: Arial, sans-serif;
+  color: #000 !important;
 }
 
 /* Dimensões fixas */
 :root {
   --video-width: 226.77165354330708px;
   --video-height: 171.21259842519686px; /* 16:9 proporção exata para 60px largura */
-  --video-top: 60px;
-  --video-left: 34px;
+  --video-top: 5.555556vh;
+  --video-left: 1.770833vw;
   --caption-gap: 56.69291338582677px;
 }
 
@@ -390,7 +357,7 @@ body {
 #player iframe {
   width: var(--video-width);
   height: var(--video-height);
-  border-radius: 5px;
+  border-radius: 0.260417vw;
   z-index: 1;
   position: relative;
 }
@@ -401,11 +368,11 @@ body {
   top: calc(var(--video-top)  + var(--video-height) + 188.97637795275588px);
   left: var(--video-left);
   width: var(--video-width);
-  font-size: 13px;
+  font-size: 1.778vh;
   color: #000 !important;
   text-decoration: underline;
   cursor: pointer;
-  line-height: 3;
+  line-height: 3vh;
   text-align: absolute;
   transition: color 0.3s;
 }
@@ -425,11 +392,11 @@ body {
 
 .video-container {
   position: absolute;
-  top: 86.9291338582677px;
-  left: 37.79527559055118px;
-  width: 380px;
-  height: 210px;
-  border-radius: 5px;
+  top: 8.055556vh;
+  left: 1.927086vw;
+  width: 19.791667vw;
+  height: 19.444444vh;
+  border-radius: 0.260417vw;
   overflow: hidden;
   cursor: pointer;
 }
@@ -455,12 +422,12 @@ body {
   position: absolute;
   top: calc(75.59055118110236px + 220px + 5px);
   left: 37.79527559055118px;
-  font-size: 13px;
+  font-size: 1.778vh;
   color: #000;
   text-decoration: underline;
   cursor: pointer;
-  line-height: 1.2;
-  width: 377.95275590551176px;
+  line-height: 1.2vh;
+  width: 19.687500vw;
 }
 
 .caption-link:hover {
@@ -470,12 +437,6 @@ body {
 
 
 
-#customVideoBox14 {
-  width: 303.62px; /* Define a largura da div para 8cm */
-  position: absolute; /* Posiciona a div em relação à página */
-  left: 718.11px; /* Define a distância da lateral esquerda para 19cm */
-  top: 303.62px;
-}
 
 
 
@@ -487,11 +448,11 @@ body {
 
 /* Dimensões fixas */
 :root {
-  --video-width: 226.77165354330708px;
-  --video-height: 171.21259842519686px; /* 16:9 proporção exata para 60px largura */
-  --video-top: 60px;
-  --video-left: 34px;
-  --caption-gap: 56.69291338582677px;
+  --video-width: 11.822917vw;
+  --video-height: 15.833333vh; /* 16:9 proporção exata para 60px largura */
+  --video-top: 5.555556vh;
+  --video-left: 11.770833vw;
+  --caption-gap: 5.185185vh;
 }
 
 .video-container {
@@ -512,7 +473,7 @@ body {
   width: var(--video-width);
   height: var(--video-height);
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 0.206417vw;
   z-index: 2;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -525,7 +486,7 @@ body {
 #player iframe {
   width: var(--video-width);
   height: var(--video-height);
-  border-radius: 5px;
+  border-radius: 0.206417vw;
   z-index: 1;
   position: relative;
 }
@@ -536,7 +497,7 @@ body {
   top: calc(var(--video-top)  + var(--video-height) + 188.97637795275588px);
   left: var(--video-left);
   width: var(--video-width);
-  font-size: 13px;
+  font-size: 1.778vh;
   color: #000;
   text-decoration: underline;
   cursor: pointer;
@@ -550,14 +511,19 @@ body {
 }
 
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
 
 .video-container {
   position: absolute;
-  top: 76.9291338582677px;
-  left: 37.79527559055118px;
-  width: 380px;
-  height: 210px;
-  border-radius: 5px;
+  top: 7.29630vh;
+  left: 1.927083vw;
+  width: 19.791667vw;
+  height: 10.937500vw;
+  border-radius: 0.260417vw;
   overflow: hidden;
   cursor: pointer;
 }
@@ -591,13 +557,13 @@ body {
 /* Legenda */
 .caption-link {
   position: absolute;
-  top: calc(75.59055118110236px + 210px + 0.1px);
-  left: 37.79527559055118px;
-  font-size: 13px;
+  top: calc(75.59055118110236px + 19.444444vh + 0.1px);
+  left: 1.979167vw;
+  font-size: 1.778vh;
   color: #000;
   text-decoration: underline;
   cursor: pointer;
-  line-height: 1.2;
+  line-height: 1.3vh;
   width: 377.95275590551176px;
 }
 
@@ -639,7 +605,7 @@ body {
   --video-width: 226.77165354330708px;
   --video-height: 171.21259842519686px; /* 16:9 proporção exata para 60px largura */
   --video-top: 0;
-  --video-left: 134px;
+  --video-left: 6.979167vw;
   --caption-gap: 56.69291338582677px;
 }
 
@@ -661,7 +627,7 @@ body {
   width: var(--video-width);
   height: var(--video-height);
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 0.260417vw;
   z-index: 2;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -674,7 +640,7 @@ body {
 #player iframe {
   width: var(--video-width);
   height: var(--video-height);
-  border-radius: 5px;
+  border-radius: 0.260417vw;
   z-index: 1;
   position: relative;
 }
@@ -685,7 +651,7 @@ body {
   top: calc(var(--video-top)  var(--video-height) + 188.97637795275588px);
   left: var(--video-left);
   width: var(--video-width);
-  font-size: 13px;
+  font-size: 1.778vh;
   color: #000;
   text-decoration: underline;
   cursor: pointer;
@@ -705,7 +671,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: #000;
-  font-family: Arial, sans-serif;
   color: #000 !important;
 }
 
@@ -713,9 +678,9 @@ body {
   position: absolute;
   top: 86.9291338582677px;
   left: 37.79527559055118px;
-  width: 320px;
-  height: 180px;
-  border-radius: 5px;
+  width: 16.666667vw;
+  height: 9.375000vw;
+  border-radius: 0.206417vw;
   overflow: hidden;
   cursor: pointer;
 }
@@ -750,13 +715,13 @@ body {
 .caption-link {
   position: absolute;
   left: 37.79527559055118px;
-  font-size: 13px;
+  font-size: 1.778vh;
   color: #000;
   text-decoration: underline;
   cursor: pointer;
   line-height: 1.1;
-  width: 320.95275590551176px;
-  bottom: 362.835px;
+  width: 29.629630vh;
+  bottom: 18.906250vh;
 }
 
 
@@ -766,7 +731,7 @@ body {
 
 .chart-wrap {
   position: fixed;
-  right: 18.90px;
+  right: 0.989583vw;
   bottom: 75.59055118110236px;
   width: 139.84251968503938px;
   height: 94.48818897637794px;
@@ -774,7 +739,7 @@ body {
   padding: 9.9px;
   box-sizing: border-box;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 0.312500vw;
 }
 
 svg.chart {
@@ -794,7 +759,7 @@ svg.chart {
 }
 
 .x-label {
-  font-size: 10px;
+  font-size: 0.925926vh;
   text-anchor: middle;
   fill: #000;
 }
@@ -803,13 +768,13 @@ svg.chart {
   position: absolute;
   background: #000;
   color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
+  padding: 0.208333vw 0.416667vw;
+  border-radius: 0.208333vw;
+  font-size: 1.778vh;
   pointer-events: none;
   display: none;
   white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 0.104167vw 0.312500vw rgba(0,0,0,0.3);
 }
 
 
@@ -819,13 +784,13 @@ svg.chart {
 /* SVG gráfico estático (gatilho) */
 #graficoSvg {
   cursor: pointer;
-  margin: 50px;
-  border: 2px solid transparent;
+  margin: 2.604167vw;
+  border: 0.104167vw solid transparent;
   transition: border 0.3s;
 }
 
 #graficoSvg:hover {
-  border: 2px solid #3498db;
+  border: 0.104167vw solid #3498db;
 }
 
 /* Container do gráfico dinâmico */
@@ -836,21 +801,21 @@ svg.chart {
   left: 88.7%;
   transform: translate(-50%, -50%);
   background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 1.04667vw;
+  border-radius: 0.416667vw;
+  box-shadow: 0 0 0.520833vw rgba(0, 0, 0, 0.3);
   z-index: 100000000000000000000000000;
 }
 
 canvas {
-  max-width: 500px;
+  max-width: 26.041667vw;
 }
 
 
 /* CSS a ser adicionado */
 #custom-overlay-container {
   position: absolute;
-  top: 86.9291338582677px;
+  top: 8.055556vh;
   left: 453.54330708661416px;
   pointer-events: none;  /* evita interferência na página */
 }
@@ -872,7 +837,7 @@ canvas {
   display: block;
   text-align: absolute;
   z-index: 3;
-  font-size: 12px;
+  font-size: 0.092596vh;
   color: #000;
 }
 
@@ -880,7 +845,7 @@ canvas {
 #custom-video,
 #custom-image,
 #custom-overlay-container {
-  border-radius: 6px; /* ajuste o valor conforme o nível de arredondamento desejado */
+  border-radius: 0.312500vw; /* ajuste o valor conforme o nível de arredondamento desejado */
   overflow: hidden; /* útil se o conteúdo interno for maior que a borda */
 }
 
@@ -888,22 +853,22 @@ canvas {
 
 #custom-overlay-container {
   width: 100%;
-  max-width: 400px;
+  max-width: 20.833333vw;
 }
 
 #custom-overlay-container {
   position: absolute;
   top: 86.93px; /* posição vertical do vídeo na tela */
-  left: 374px;  /* posição horizontal do vídeo */
-  width: 320px; /* largura total do contêiner, igual ao vídeo */
+  left: 19.479167vw;  /* posição horizontal do vídeo */
+  width: 16.666667vw; /* largura total do contêiner, igual ao vídeo */
   height: auto;
 }
 
 #custom-video {
   display: block;
-  width: 320px;
-  height: 180px;
-  border-radius: 6px;
+  width: 16.666667vw;
+  height: 16.666667vh;
+  border-radius: 0.312500vw;
   z-index: 2;
 }
 
@@ -911,7 +876,7 @@ canvas {
   display: block;
   margin-top: 3.78px; /* distância de 1mm após o vídeo */
   width: 100%;        /* mesma largura do vídeo */
-  font-size: 12px;
+  font-size: 1.778vh;
   text-align: absolute;
   text-decoration: underline;
   color: #000;
@@ -978,7 +943,7 @@ html, body { margin: 0; padding: 0; }
 .yt-caption {
   display: block;
   margin-top: 37.795275590551181px;
-  font: 500 13px/1.2 system-ui,  Arial, sans-serif;
+  font: 500 11.778vh/1.2  Arial, sans-serif;
   text-decoration: none;
   color: #000;
   width: 100%;
@@ -1050,7 +1015,7 @@ html, body { margin: 0; padding: 0;}
 .yt-caption {
   display: block;
   margin-top: 37.79527559055118px;
-  font: 500 13px/1.2   Arial, sans-serif;
+  font: 500 1.778vh/1.2   Arial, sans-serif;
   text-decoration: none;
   color: #000 !important;
   width: 320px;
@@ -1076,7 +1041,7 @@ html, body { margin: 0; padding: 0;}
 margin-top: 37.79527559055118px;
  text-align: absolute;
  font-family: Arial, sans-serif;
- font-size: 13px;
+ font-size: 1.778vh;
  }
 
  .video-miniatura {
@@ -1094,7 +1059,7 @@ margin-top: 37.79527559055118px;
 
 .video-legenda {
   margin-top: 4px;
-  font-size: 13px;
+  font-size: 1.778vh;
   font:  Arial, sans-serif;
 }
 
@@ -1114,7 +1079,7 @@ margin-top: 37.79527559055118px;
 
 .video-caption {
   margin-top: 4px;         /* 1mm abaixo do vídeo */
-  font-size: 13px;
+  font-size: 1.778vh;
   text-align: absolute;
   color: #000;
   font:  Arial, sans-serif;
@@ -1161,7 +1126,7 @@ margin-top: 37.79527559055118px;
 /* Legenda-link exclusiva */
 .custom-video-caption {
   margin-top: 3.78px;
-  font-size: 13px;
+  font-size: 1.778vh;
   width: 320px;
 }
 
@@ -1189,7 +1154,7 @@ margin-top: 37.79527559055118px;
 }
 
 
-body {
+ body {
   height: auto;
   min-height: 100%;
   min-width: 100%;
@@ -1269,7 +1234,7 @@ h2 {
   padding: 10px;
 }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -1303,7 +1268,7 @@ body {
 
 .vid-box p {
   margin: 37.79527559055118px 0 0 0;      /* 1mm abaixo do vídeo */
-  font-size: 14px;
+  font-size: 1.778vh;
   text-align: center; 
 }
 
@@ -1365,7 +1330,7 @@ body {
 #videoCaption2 {
   margin-top: 37.79527559055118px;
   width: 320px;
-  font-size: 13px;
+  font-size: 1.778vh;
   color: #000;
 }
 
@@ -1394,7 +1359,7 @@ body {
 #videoCaption3 {
   margin-top: 37.79527559055118px;
   width: 320px;
-  font-size: 13px;
+  font-size: 1.778vh;
   color: #000;
 }
 
@@ -1428,7 +1393,7 @@ body {
   margin-top: 10px;
   text-align: absolute;
   font-family: Arial, sans-serif;
-  font-size: 13px;
+  font-size: 1.778vh;
   color: #000;
 }
 
@@ -1445,7 +1410,7 @@ body {
 
 #videoCaption a {
   color: black;
-  font-size: 13px !important;
+  font-size: 1.778vh !important;
   text-decoration: none;
 }
 
@@ -1457,7 +1422,7 @@ body {
   top: 755.90px;         /* distância do topo da tela */
   left: 37.8px;         /* distância da lateral esquerda */
   width: 320px;      /* largura padrão do vídeo (ajuste se desejar) */
-  height: 197px;     /* altura proporcional (16:9) */
+  height: 180px;     /* altura proporcional (16:9) */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1473,7 +1438,7 @@ body {
 /* Legenda abaixo do vídeo */
 #videoCaption5 {
   margin-top: 3.78px;   /* legenda a 1mm abaixo do vídeo */
-  font-size: 13px;
+  font-size: 1.778vh;
   text-align: absolute;
 }
 
@@ -1498,7 +1463,7 @@ body {
 /* Estilo do vídeo incorporado */
 .video-container iframe {
   width: 320px;              /* largura exata */
-  height: 192px;             /* altura exata */
+  height: 180px;             /* altura exata */
   display: block;            /* garante que fique acima da legenda */
   margin: 0 auto;            /* centraliza dentro do container */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* sombra sutil opcional */
@@ -1508,7 +1473,7 @@ body {
 .video-caption {
   display: block;
   margin-top: 3.7795275590551185px;           /* 1 mm abaixo do vídeo */
-  font-size: 13px;
+  font-size: 1.778vh;
   font-family: Arial, sans-serif;
   color: #000;
   text-decoration: underline;
@@ -1535,7 +1500,7 @@ body {
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
   font-family:  Arial, sans-serif;
-  font-size: 13px;
+  font-size: 1.778vh;
   line-height: 1.1;
   color: #ffffff;
   margin: 0;
@@ -1560,7 +1525,7 @@ body {
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
   font-family:  Arial, sans-serif;
-  font-size: 13px;
+  font-size: 1.778vh;
   line-height: 1.1;
   color: #ffffff;
   margin: 0;
@@ -1584,8 +1549,8 @@ body {
   left: 37.8px;                    /* mesma distância lateral do vídeo */
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
-  font-family:  Arial, sans-serif;
-  font-size: 13px;
+  font-family: Arial, sans-serif;
+  font-size: 1.778vh;
   line-height: 1.1;
   color: #ffffff;
   margin: 0;
@@ -1610,7 +1575,7 @@ body {
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
   font-family:  Arial, sans-serif;
-  font-size: 13px;
+  font-size: 1.778vh;
   line-height: 1.1;
   color: #000;
   margin: 0;
@@ -1635,7 +1600,7 @@ body {
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
   font-family:  Arial, sans-serif;
-  font-size: 13px;
+  font-size: 1.778vh;
   line-height: 1.1;
   color: #000;
   margin: 0;
@@ -1660,8 +1625,8 @@ body {
   width: 320px;                  /* igual à largura do vídeo */
   text-align: absolute;
   font-family:  Arial, sans-serif;
-  font-size: 13px;
-  line-height: 1.1;
+  font-size: 1.778vh;
+  line-height: 1.3vh;
   color: #000;
   margin: 0;
   padding: 0;
@@ -1682,11 +1647,11 @@ body {
   position: absolute;
   top: calc(755.9055118110235px + 180px); /* 20cm (posição do topo do vídeo) + altura do vídeo + 1mm */
   left: 718.1102362204724px;                    /* mesma distância lateral do vídeo */
-  width: 320px;                  /* igual à largura do vídeo */
+  width: calc(16.667 * var(--vw));                  /* igual à largura do vídeo */
   text-align: absolute;
   font-family: Arial, sans-serif;
-  font-size: 13px;
-  line-height: 1.1;
+  font-size: 1.778vh;
+  line-height: 1.3vh;
   color: #ffffff;
   margin: 0;
   padding: 0;
@@ -1698,22 +1663,22 @@ body {
 /* Caixa do vídeo */
 #customVideoBox15 {
   position: absolute;
-  top: 86.9291338582677px;         /* ajuste conforme a posição do seu vídeo */
-  left: 377.95275590551176px;        /* distância da lateral esquerda */
-  width: 320px;      /* largura padrão do vídeo */
-  height: 180px;     /* altura padrão do vídeo */
+  top: 8.055556vh;         /* ajuste conforme a posição do seu vídeo */
+  left: 19.687500vw;        /* distância da lateral esquerda */
+  width: 16.666667vw;      /* largura padrão do vídeo */
+  height: 16.666667vh;     /* altura padrão do vídeo */
 }
 
 /* Legenda-link abaixo do vídeo */
 #videoCaption15 {
   position: absolute;
-  top: 480px; /*(posição do topo do vídeo) + altura do vídeo + 1mm */
-  left: 377.953px;                    /* mesma distância lateral do vídeo */
-  width: 320px;                  /* igual à largura do vídeo */
+  top: 44.444444vh; /*(posição do topo do vídeo) + altura do vídeo + 1mm */
+  left: 35.000000vh;                    /* mesma distância lateral do vídeo */
+  width: 16.666667vw;                  /* igual à largura do vídeo */
   text-align: absolute;
   font-family:  Arial, sans-serif;
-  font-size: 13px;
-  line-height: 1.1;
+  font-size: 1.778vh;
+  line-height: 1.3vh;
   color: #000;
   margin: 0;
   padding: 0;
@@ -1721,239 +1686,235 @@ body {
 }
 
 
-html {
-  width: 100%;
-  height: 100%;
-  font-size: 1vw;
-}
 
-/* Garantindo que o body ocupe 100% da altura e largura da tela */
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden; /* Impede que o conteúdo saia da tela na horizontal */
-}
-
-/* Ajustes no layout principal para ocupar toda a tela */
-main {
-  flex-grow: 1; /* Garante que o conteúdo ocupe toda a área disponível */
-  display: flex;
+display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alinha os itens no topo */
-  height: 100vh; /* Garante que o main ocupe a altura total da tela */
-  width: 100vw; /* Garante que o main ocupe a largura total da tela */
-  padding: 20px;
-  box-sizing: border-box; /* Inclui padding e border no cálculo da largura e altura */
+
+/* Responsivo (opcional) */
+@media (max-width: 600px) {
+  #customYT,
+  #videoCaption {
+    width: 100%;
+  }
 }
 
-/* Ajuste para os elementos dentro do .content */
-.content, .sidebar {
-  width: 100%;
-  margin-bottom: 10px;
-  box-sizing: border-box;
-}
 
-* {
-  box-sizing: border-box;
-  max-width: 100%;
-}
 
-/* Responsividade para ajustar o layout em telas menores */
-@media (max-width: 100%) {
+
+/* Responsividade */
+@media (max-width: 1024px) {
   .video-grid {
-    grid-template-columns: 1fr; /* Coloca os vídeos em uma coluna */
-  }
-  .search-container {
-    flex-direction: column; /* Coloca a barra e o botão em coluna */
-    align-items: center; /* Centraliza os itens */
-    width: 100%; /* Faz o container ocupar toda a largura */
-  }
-  .search-input, .search-button {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    margin-bottom: 15px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Ajuste da altura da tela para o conteúdo */
+@media (max-width: 600px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Media Queries para Responsividade */
+
+/* Para telas menores que 768px (como tablets e smartphones) */
 @media (max-width: 768px) {
-  body, html {
-    height: 100%;
-    width: 100%;
+  .content {
+      flex-direction: column;
   }
-
-  main {
-    padding: 10px;
+  .box {
+      width: 100%;
   }
 }
 
-/* Ajustes para telas menores (como smartphones) */
+/* Para telas menores que 480px (como smartphones) */
 @media (max-width: 480px) {
-  body, html {
-    height: 100%;
-    width: 100%;
-    overflow-y: auto; /* Permite rolar na vertical */
+  header, {
+      font-size: 14px;
   }
-  main {
-    padding: 5px; /* Menos padding para telas pequenas */
+  .box {
+      font-size: 14px;
+      padding: 15px;
+  }
+}
+
+
+/* Para telas menores que 768px */
+@media (max-width: 768px) {
+  .search-container {
+      flex-direction: column; /* Coloca a barra e o botão em coluna */
+      align-items: center; /* Centraliza os itens */
   }
 
   .search-input, .search-button {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
+      width: 100%; /* Faz a barra de pesquisa e o botão ocuparem a largura inteira */
+      margin-bottom: 10px; /* Dá um espaçamento entre os elementos */
   }
 }
 
-/* Ajustes para telas muito pequenas, como o iPhone SE */
+/* Para telas menores que 480px (como smartphones) */
+@media (max-width: 480px) {
+  .search-input, .search-button {
+      font-size: 14px; /* Ajusta o tamanho da fonte para telas pequenas */
+      padding: 8px; /* Reduz o padding para economizar espaço */
+  }
+}
+
+/* Para telas até 320px (smartphones muito pequenos, ex: iPhone SE) */
 @media (max-width: 320px) {
   .search-input, .search-button {
-    width: 100%;
-    font-size: 12px;
-    padding: 6px;
+      width: 100%; /* Barra de pesquisa e botão ocupam 100% da largura */
+      font-size: 12px; /* Tamanho de fonte menor */
+      padding: 6px; /* Reduz o padding */
+      margin-bottom: 8px; /* Espaço entre os elementos */
   }
-  header {
-    font-size: 12px; /* Ajusta o tamanho da fonte */
+}
+
+/* Para telas até 375px (iPhone X, iPhone 11, etc.) */
+@media (max-width: 375px) {
+  .search-input, .search-button {
+      width: 100%; /* Barra de pesquisa e botão ocupam 100% da largura */
+      font-size: 14px; /* Tamanho de fonte ajustado */
+      padding: 8px; /* Ajusta o padding */
+      margin-bottom: 10px; /* Espaçamento entre os elementos */
+  }
+}
+
+/* Para telas até 414px (ex: Samsung Galaxy S9+) */
+@media (max-width: 414px) {
+  .search-input, .search-button {
+      width: 100%; /* Barra de pesquisa e botão ocupam 100% da largura */
+      font-size: 15px; /* Ajuste do tamanho de fonte */
+      padding: 10px; /* Aumenta o padding para melhor visibilidade */
+      margin-bottom: 12px; /* Aumenta o espaçamento */
+  }
+}
+
+/* Para telas até 480px (como smartphones grandes e tablets pequenos em modo retrato) */
+@media (max-width: 480px) {
+  .search-input, .search-button {
+      width: 100%; /* Barra de pesquisa e botão ocupam 100% da largura */
+      font-size: 16px; /* Tamanho de fonte mais legível */
+      padding: 12px; /* Espaço maior para facilitar a interação */
+      margin-bottom: 15px; /* Espaço maior entre os elementos */
+  }
+}
+
+/* Para telas entre 481px e 600px (smartphones mais largos, tablets pequenos) */
+@media (min-width: 481px) and (max-width: 600px) {
+  .search-input, .search-button {
+      width: 100%; /* Barra de pesquisa e botão ocupam 100% da largura */
+      font-size: 16px; /* Tamanho de fonte ainda legível */
+      padding: 12px; /* Ajuste de padding */
+      margin-bottom: 15px; /* Espaçamento */
+  }
+}
+
+/* Para telas entre 601px e 768px (tablets em modo retrato) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .search-input, .search-button {
+      width: 100%; /* Barra de pesquisa e botão ocupam 100% da largura */
+      font-size: 18px; /* Tamanho de fonte maior */
+      padding: 14px; /* Maior espaçamento */
+      margin-bottom: 20px; /* Mais espaçamento entre os elementos */
+  }
+}
+
+
+html, body {
+  height: 100%;
+  width: 100%;
+  
+}
+
+/* Para garantir que o layout ocupe toda a altura da tela e que o conteúdo não saia da tela */
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Definindo o layout do conteúdo principal */
+main {
+  flex-grow: 1; /* Garante que o conteúdo ocupe toda a área disponível */
+  padding: 20px;
+}
+
+
+/* Media Queries para Responsividade */
+
+/* Para telas até 768px (tablets e smartphones em modo retrato) */
+@media (max-width: 768px) {
+  body {
+      flex-direction: column; /* Organiza os itens em uma coluna */
+  }
+
+  main {
+      padding: 10px;
+  }
+
+  
+}
+
+/* Para telas até 480px (smartphones em modo retrato) */
+@media (max-width: 480px) {
+  main {
+      padding: 5px; /* Reduz o padding em telas muito pequenas */
+  }
+
+  
+  /* Ajusta os elementos de conteúdo para ocupar a largura completa */
+  .content, .sidebar {
+      width: 100%; /* Barra lateral e conteúdo ocupam toda a largura */
+      margin-bottom: 10px; /* Adiciona espaçamento entre os elementos */
   }
 }
 
 /* Para telas grandes acima de 1024px (monitores e desktops) */
 @media (min-width: 1024px) {
-  body {
-    display: flex;
-    flex-direction: row; /* Exibe o layout de forma horizontal */
-  }
   .content {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
   }
+
   .sidebar {
-    width: 300px;
+      width: 300px; /* Sidebar com largura fixa */
   }
+
   .box {
-    flex: 1 1 200px; /* Ajusta as caixas para ocupar o espaço */
+      flex: 1 1 200px; /* Ajusta as caixas para ocupar o espaço */
   }
 }
 
-/* Para ajustes finos nas larguras de tela intermediárias */
-@media (min-width: 600px) and (max-width: 768px) {
-  .search-input, .search-button {
-    width: 100%;
-    font-size: 18px;
-    padding: 14px;
-    margin-bottom: 20px;
+/* ======================== RESPONSIVIDADE ========================= */
+
+/* Tablets (até 1024px) */
+@media (max-width: 1024px) {
+  .search-bar { width: 50vw; }
+  .vid-box p { font-size: 0.85rem; }
+}
+
+/* Smartphones (até 768px) */
+@media (max-width: 768px) {
+  header { height: 8vh; }
+  .search-container { flex-direction: column; }
+  .search-bar, .search-button { width: 80%; margin-bottom: 10px; }
+  .video-gallery { grid-template-columns: 1fr; }
+  .chart-wrap, #qrcode-container { display: none; } /* oculta extras em telas pequenas */
+}
+
+/* Smartphones muito pequenos (até 480px) */
+@media (max-width: 480px) {
+  .search-bar { font-size: 0.9rem; }
+  .search-button { font-size: 0.9rem; }
+  .vid-box iframe { width: 100%; }
+  .vid-box p { font-size: 0.8rem; }
+}
+
+/* Ajuste fino para telas muito pequenas */
+@media (max-width: 480px) {
+  h1 {
+    left: clamp(40px, 10vw, 106px) !important;
+    top: clamp(4px, 1vh, 8px) !important;
   }
 }
-
-@media (min-width: 481px) and (max-width: 600px) {
-  .search-input, .search-button {
-    width: 100%;
-    font-size: 16px;
-    padding: 12px;
-    margin-bottom: 15px;
-  }
-}
-
-
-
-@media (orientation:  landscape)  {
-  html {
-    font-size: 1vh;
-  }
-}
-
-@media (orientation: portrait) {
-  html {
-    font-size: 1vw;
-  }
-}
-
-
-* {
-  box-sizing: border-box;
-  max-width: 100%;
-}
-
-h1, h2, h3, h4, h5, h6, p, a, li, span,  button {
-  font-size: 1rem;
-  line-height: 1.3;
-}
-
-
-svg {
-  width: 4vw;
-  height: 4vh;
-}
-
-@media (orientation: landscape) {
-  svg {
-    width: 4vh;
-    height: 4vh;
-  }
-}
-
-.logo {
-  width: 10vw;
-}
-
-@media  (orientation: landscape) {
-  .logo {
-    width: 10vh;
-  }
-}
-
-
-
-
-
-
-
-.video-container {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  aspect-ratio: 16 / 9;
-}
-
-.video-container iframe {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: none;
-  top: 0;
-  left: 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-/*Remove o botão transmitir (Chromecast) do player */
-iframe[src*="youtube.com"] {
-  }
-
-
-/* Esconde manualmente o ícone de transmitir */
-.ytp-cast-button,
-.ytp-chrome-controls .ytp-button[aria-label*="Transmitir"],
-.ytp-button["Transmitir"],
-.ytp-button[aria-label*="Cast"] {
-      display: none !important;
-      opacity:  0 !important;
-      pointer-events: none !important;
-}
-
-
-
-
-
