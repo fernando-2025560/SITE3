@@ -734,7 +734,6 @@ document.head.appendChild(customTag);
     // opcional: remover placeholder do DOM para evitar cliques duplicados
     placeholder.style.display = 'none';
   });
-})();
 
 
 
@@ -848,3 +847,4 @@ window.addEventListener("resize", ajustarLayout);
 window.addEventListener("orientationchange", () => {
   document.documentElement.style.transition = "0.2s ease";
 });
+
