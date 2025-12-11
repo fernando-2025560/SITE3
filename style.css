@@ -96,7 +96,7 @@ header {
 
 h1 {
     position: absolute;
-    top: 0;
+    top: 6.2vh;
     left: 0;
     margin: 0;
 
@@ -1917,5 +1917,6 @@ main {
     top: clamp(4px, 1vh, 8px) !important;
   }
 }
+
 
 
