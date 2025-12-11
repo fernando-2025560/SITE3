@@ -96,9 +96,9 @@ header {
 
 h1 {
     position: absolute;
-    top: 6.2vh;
+    top: 3.2vh;
     left: 0;
-    margin: 0;
+    margin: 8vw;
 
     /* Tamanho responsivo e proporcional */
     font-size: clamp(18px, 2.2vw, 24.6px);
@@ -1917,6 +1917,7 @@ main {
     top: clamp(4px, 1vh, 8px) !important;
   }
 }
+
 
 
 
