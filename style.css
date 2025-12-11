@@ -94,14 +94,14 @@ header {
     width: 100% !important;
 }
 
-
-  
 h1 {
-  font-size: clamp(18px, 2.2vw, 24.6px) !important;
-  position: absolute !important;
-  top: clamp(4px, 1vh, 8px) !important;
-  left: clamp(40px, 10vw, 106px) !important;
-  margin: clamp(5px, 1vh, 10px) !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+
+    /* Tamanho responsivo e proporcional */
+    font-size: clamp(18px, 2.2vw, 24.6px);
 }
 
 /* Mantém a barra no mesmo lugar, mas ajusta automaticamente */
@@ -1917,4 +1917,5 @@ main {
     top: clamp(4px, 1vh, 8px) !important;
   }
 }
+
 
