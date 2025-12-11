@@ -2,7 +2,6 @@ html, body {
   margin: 0 !important;
   padding: 0 !important;
   min-width: 100% !important; /* Evita problemas em telas muito pequenas */
-  height: 149% !important;
   min-height: 149% !important;
   background-image: url(1.jpg) !important;
   background-size: cover !important;
@@ -1918,3 +1917,4 @@ main {
     top: clamp(4px, 1vh, 8px) !important;
   }
 }
+
