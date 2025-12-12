@@ -85,7 +85,6 @@ body {
     align-items: flex-start !important;
     height: 100vh !important;
     background-color: #f5f5f5 !important;
-    font-family: Arial, sans-serif !important;
 }
 
 header {
@@ -94,14 +93,14 @@ header {
     width: 100% !important;
 }
 
-h1 {
-    position: absolute;
-    top: 3.2vh;
-    left: 8vw;
-    margin: 8vw;
 
-    /* Tamanho responsivo e proporcional */
-    font-size: clamp(18px, 2.2vw, 24.6px);
+  
+h1 {
+  font-size: clamp(18px, 2.2vw, 24.6px) !important;
+  position: absolute !important;
+  top: clamp(4px, 1vh, 8px) !important;
+  left: clamp(40px, 10vw, 106px) !important;
+  margin: clamp(5px, 1vh, 10px) !important;
 }
 
 /* Mantém a barra no mesmo lugar, mas ajusta automaticamente */
@@ -119,7 +118,7 @@ h1 {
 /* Ajuste fino para telas muito pequenas */
 @media (max-width: 480px) {
   h1 {
-      left: 20px ;
+      left: 20px !important;
       top: 6px !important;
   }
 }
@@ -321,15 +320,14 @@ body {
   width: 4.322917vw !important;
   height: 7.685185vh !important;
   position: fixed;
-  bottom: 367.795px;
+  bottom: 19.156vw;
 }
 
 body {
   margin: 0;
   padding: 0;
   background-color: #000;
-  font-family: Arial, sans-serif;
-  color: #000 !important;
+  
 }
 
 /* Dimensões fixas */
@@ -385,8 +383,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #000;
-  font-family: Arial, sans-serif;
-  color: #000 !important;
+  
 }
 
 .video-container {
@@ -718,7 +715,7 @@ body {
   color: #000;
   text-decoration: underline;
   cursor: pointer;
-  line-height: 1.1;
+  line-height: 1.1vh;
   width: 29.629630vh;
   bottom: 18.906250vh;
 }
@@ -1917,10 +1914,3 @@ main {
     top: clamp(4px, 1vh, 8px) !important;
   }
 }
-
-
-
-
-
-
-
