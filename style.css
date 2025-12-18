@@ -1173,7 +1173,7 @@ margin-top: 37.79527559055118px;
 
 .conteudo {
   width: 95%;
-  max-width: 1200px;
+  max-width: 62.5vw;
   margin: 0 auto;
   padding: 20px;
 }
@@ -1901,4 +1901,5 @@ main {
     top: clamp(4px, 1vh, 8px) !important;
   }
 }
+
 
