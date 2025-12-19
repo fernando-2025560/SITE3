@@ -539,7 +539,7 @@ body {
   position: absolute;
   top: calc(8.399vh + 19.444444vh + 0.011vh);
   left: 1.979167vw;
-  font-size: 1.778vh;
+  font-size: 1.78vh;
   color: #000;
   text-decoration: underline;
   cursor: pointer;
@@ -656,7 +656,7 @@ body {
 
 .video-container {
   position: absolute;
-  top: 86.9291338582677px;
+  top: 9.659vh;
   left: 37.79527559055118px;
   width: 16.666667vw;
   height: 9.375000vw;
@@ -1885,6 +1885,7 @@ main {
     top: clamp(4px, 1vh, 8px) !important;
   }
 }
+
 
 
 
