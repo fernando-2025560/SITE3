@@ -409,7 +409,7 @@ body {
 .caption-link {
   position: absolute;
   top: 75vh;
-  left: 37.79527559055118px;
+  left: 1.969vw;
   font-size: 1.778vh;
   color: #000;
   text-decoration: underline;
@@ -1885,6 +1885,7 @@ main {
     top: clamp(4px, 1vh, 8px) !important;
   }
 }
+
 
 
 
