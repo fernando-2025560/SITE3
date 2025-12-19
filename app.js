@@ -832,7 +832,7 @@ function ajustarLayout() {
       menu.style.justifyContent = "center";
       menu.style.alignItems = "center";
       menu.style.flexDirection = "row";
-      menu.style.backdropFilter = "blur(0.156vw)";
+      menu.style.backdropFilter = "blur(3px)";
     }
 
     // 🔹 Ajuste geral do corpo da página
@@ -848,6 +848,7 @@ window.addEventListener("resize", ajustarLayout);
 window.addEventListener("orientationchange", () => {
   document.documentElement.style.transition = "0.2s ease";
 });
+
 
 
 
