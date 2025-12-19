@@ -797,31 +797,33 @@ function ajustarLayout() {
       menu.style.padding = "10px 0";
     }
 
+
 // 🔹 Ajuste geral do corpo da página (responsivo)
 body.style.paddingTop = "clamp(60px, 8vh, 90px)";
 
 } else {
   console.log("Modo desktop ativado");
 
-  // 🔹 Ajuste de vídeos para telas grandes (responsivo)
+  // 🔹 Ajuste de vídeos para telas grandes (RESPONSIVO E SEGURO)
   videos.forEach(video => {
-    video.style.width = "clamp(280px, 60vw, 640px)";
-    video.style.height = "auto"; // mantém proporção
-    video.style.aspectRatio = "16 / 9";
-    video.style.margin = "clamp(12px, 3vh, 24px) auto";
+    video.style.width = "100%";
+    video.style.maxWidth = "640px"; // limite desktop
+    video.style.height = "auto";    // preserva proporção original
     video.style.display = "block";
+    video.style.margin = "clamp(12px, 3vh, 20px) auto";
   });
 
   // 🔹 Ajuste de imagens para telas grandes (responsivo)
   imagens.forEach(img => {
-    img.style.width = "auto";
+    img.style.width = "100%";
+    img.style.maxWidth = "600px";
     img.style.height = "auto";
-    img.style.maxWidth = "clamp(260px, 55vw, 600px)";
-    img.style.borderRadius = "clamp(6px, 1vw, 10px)";
+    img.style.borderRadius = "clamp(6px, 1vw, 8px)";
     img.style.display = "block";
-    img.style.margin = "clamp(12px, 3vh, 24px) auto";
+    img.style.margin = "clamp(12px, 3vh, 20px) auto";
   });
 }
+
     
     // 🔹 Ajuste do menu para desktop (responsivo)
 if (menu) {
