@@ -713,7 +713,7 @@ body {
   position: fixed;
   right: 0.989583vw;
   bottom: 8.399vh;
-  width: 139.84251968503938px;
+  width: 7.283vw;
   height: 94.48818897637794px;
   background: #fff;
   padding: 9.9px;
@@ -750,7 +750,7 @@ svg.chart {
   color: #fff;
   padding: 0.208333vw 0.416667vw;
   border-radius: 0.208333vw;
-  font-size: 1.778vh;
+  font-size: 1.78vh;
   pointer-events: none;
   display: none;
   white-space: nowrap;
@@ -1885,6 +1885,7 @@ main {
     top: clamp(4px, 1vh, 8px) !important;
   }
 }
+
 
 
 
