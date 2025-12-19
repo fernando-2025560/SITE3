@@ -716,7 +716,7 @@ body {
   width: 7.283vw;
   height: 10.499vh;
   background: #fff;
-  padding: 9.9px;
+  padding: 0.516vw;
   box-sizing: border-box;
   border: 0.052vw solid #ccc;
   border-radius: 0.312500vw;
@@ -1885,6 +1885,7 @@ main {
     top: clamp(4px, 1vh, 8px) !important;
   }
 }
+
 
 
 
