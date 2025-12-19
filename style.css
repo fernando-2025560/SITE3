@@ -416,7 +416,7 @@ body {
 /* Legenda */
 .caption-link {
   position: absolute;
-  top: calc(75.59055118110236px + 220px + 5px);
+  top: 1cm;
   left: 37.79527559055118px;
   font-size: 1.778vh;
   color: #000;
@@ -1901,6 +1901,7 @@ main {
     top: clamp(4px, 1vh, 8px) !important;
   }
 }
+
 
 
 
