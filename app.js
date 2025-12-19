@@ -821,24 +821,27 @@ function ajustarLayout() {
       img.style.margin = "20px auto";
     });
 
-    // 🔹 Ajuste do menu para desktop
-    if (menu) {
-      menu.style.position = "fixed";
-      menu.style.top = "0";
-      menu.style.width = "100%";
-      menu.style.height = "60px";
-      menu.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
-      menu.style.display = "flex";
-      menu.style.justifyContent = "center";
-      menu.style.alignItems = "center";
-      menu.style.flexDirection = "row";
-      menu.style.backdropFilter = "blur(3px)";
-    }
+    // 🔹 Ajuste do menu para desktop (responsivo)
+if (menu) {
+  menu.style.position = "fixed";
+  menu.style.top = "0";
+  menu.style.width = "100%";
 
-    // 🔹 Ajuste geral do corpo da página
-    body.style.paddingTop = "80px";
-  }
+  // Altura responsiva
+  menu.style.height = "clamp(50px, 8vh, 70px)";
+
+  menu.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
+  menu.style.display = "flex";
+  menu.style.justifyContent = "center";
+  menu.style.alignItems = "center";
+  menu.style.flexDirection = "row";
+
+  // Blur responsivo
+  menu.style.backdropFilter = "blur(clamp(2px, 0.5vw, 4px))";
 }
+
+// 🔹 Ajuste geral do corpo da página (responsivo)
+body.style.paddingTop = "clamp(70px, 10vh, 90px)";
 
 // Executa o ajuste ao carregar e redimensionar
 window.addEventListener("load", ajustarLayout);
@@ -848,6 +851,7 @@ window.addEventListener("resize", ajustarLayout);
 window.addEventListener("orientationchange", () => {
   document.documentElement.style.transition = "0.2s ease";
 });
+
 
 
 
