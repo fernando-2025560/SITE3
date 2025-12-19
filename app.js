@@ -797,30 +797,32 @@ function ajustarLayout() {
       menu.style.padding = "10px 0";
     }
 
-    // 🔹 Ajuste geral do corpo da página
-    body.style.paddingTop = "70px";
+// 🔹 Ajuste geral do corpo da página (responsivo)
+body.style.paddingTop = "clamp(60px, 8vh, 90px)";
 
-  } else {
-    console.log("Modo desktop ativado");
+} else {
+  console.log("Modo desktop ativado");
 
-    // 🔹 Ajuste de vídeos para telas grandes
-    videos.forEach(video => {
-      video.style.width = "640px";
-      video.style.height = "360px";
-      video.style.margin = "20px auto";
-      video.style.display = "block";
-    });
+  // 🔹 Ajuste de vídeos para telas grandes (responsivo)
+  videos.forEach(video => {
+    video.style.width = "clamp(280px, 60vw, 640px)";
+    video.style.height = "auto"; // mantém proporção
+    video.style.aspectRatio = "16 / 9";
+    video.style.margin = "clamp(12px, 3vh, 24px) auto";
+    video.style.display = "block";
+  });
 
-    // 🔹 Ajuste de imagens para telas grandes
-    imagens.forEach(img => {
-      img.style.width = "auto";
-      img.style.height = "auto";
-      img.style.maxWidth = "600px";
-      img.style.borderRadius = "8px";
-      img.style.display = "block";
-      img.style.margin = "20px auto";
-    });
-
+  // 🔹 Ajuste de imagens para telas grandes (responsivo)
+  imagens.forEach(img => {
+    img.style.width = "auto";
+    img.style.height = "auto";
+    img.style.maxWidth = "clamp(260px, 55vw, 600px)";
+    img.style.borderRadius = "clamp(6px, 1vw, 10px)";
+    img.style.display = "block";
+    img.style.margin = "clamp(12px, 3vh, 24px) auto";
+  });
+}
+    
     // 🔹 Ajuste do menu para desktop (responsivo)
 if (menu) {
   menu.style.position = "fixed";
@@ -851,6 +853,7 @@ window.addEventListener("resize", ajustarLayout);
 window.addEventListener("orientationchange", () => {
   document.documentElement.style.transition = "0.2s ease";
 });
+
 
 
 
